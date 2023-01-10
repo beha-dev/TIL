@@ -169,3 +169,51 @@
             ```
             <div id="userProfile"></div>
             ```
+    - HTML Formatting Rules
+        - HTML Quotation Marks
+            - 속성 값을 입력할 때 큰 따옴표를 사용
+            - 추천 예시
+            ```
+            <a class="maia-button maia-button-secondary">Sign in</a>
+            ```
+            - 비추천 예시
+            ```
+            <a class='maia-button maia-button-secondary'>Sign in</a>
+            ```
+- CSS
+    - CSS Style Rules
+        - Class Naming
+            - 의미 있거나 일반적인 클래스 이름을 사용
+            - 추천 예시
+            ```
+            .gallery {}
+            .login {}
+            .video {}
+            .aux {}
+            .alt {}
+            ```
+            - 비추천 예시
+            ```
+            .yee-1901 {}
+            .button-green {}
+            .clear {}
+            ```
+        - Class Name Style
+            - 이해 가능한 정도까지만 약식으로 표시
+            - 예시
+            ```
+            .navigation {} -> .nav {}
+            .atr {} -> .author {}
+            ```
+        - Class Name Delimiters(구분자)
+            - -(하이픈) 으로 클래스를 구분
+            - 추천 예시
+            ```
+            .video-id {}
+            .ads-sample {}
+            ```
+            - 비추천 예시
+            ```
+            .demoimage {}
+            .error_status {}
+            ```
