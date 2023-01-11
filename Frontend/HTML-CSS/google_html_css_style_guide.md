@@ -217,3 +217,80 @@
             .demoimage {}
             .error_status {}
             ```
+        - Type Selectors
+            - 유형 선택자를 클래스 이름으로 설정하지 않음
+            - 필요하지 않은 경우 클래스와 함께 요소 이름을 사용하지 않음
+            - 추천 예시
+            ```
+            .example {}
+            .error {}
+            ```
+            - 비추천 예시
+            ```
+            ul.example {}
+            div.error {}
+            ```
+        - ID Selectors
+            - ID 선택자 사용을 피함
+            - ID 속성은 전체 페이지에서 고유한 값을 가져야 하는데, 여러 개발자들이 작업하는 경우 고유 값을 보장하기가 어려움
+            - class 선택자를 사용하는 편이 좋음
+            - 추천 예시
+            ```
+            .example {}
+            ```
+            - 비추천 예시
+            ```
+            #example {}
+            ```
+        - Shorthand Properties
+            - 가능한 경우 shorthand 속성을 사용
+            - 추천 예시
+            ```
+            border-top: 0;
+            font: 100%/1.6 palatino, georgia, serif;
+            padding: 0 1em 2em;
+            ```
+            - 비추천 예시
+            ```
+            border-top-style: none;
+            font-family: palatino, georgia, serif;
+            font-size: 100%;
+            line-height: 1.6;
+            padding-bottom: 2em;
+            padding-left: 1em;
+            padding-right: 1em;
+            padding-top: 0;
+            ```
+        - 0 and Units
+            - 필요한 경우가 아니면 "0" 값 뒤에 단위 지정을 생략
+            - 예시
+            ```
+            flex: 0px; /* This flex-basis component requires a unit. */
+            flex: 1 1 0px; /* Not ambiguous without the unit, but needed in IE11. */
+            margin: 0;
+            padding: 0;
+            ```
+        - Leading 0s
+            - -1과 1 사이의 값은 0을 포함
+            - 예시
+            ```
+            font-size: 0.8em;
+            ```
+        - Hexadecimal Notation
+            - 가능한 경우 3자리 16진수 표기법을 사용
+            - 예시
+            ```
+            color: #eebbcc; -> color: #ebc;
+            ```
+        - Important Declarations
+            - "!important" 사용을 지양
+            - 예시
+            ```
+            .example { # 비추천
+                font-weight: bold !important;
+            }   
+
+            .example { # 추천
+                font-weight: bold;
+            }
+            ```
