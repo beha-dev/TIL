@@ -294,3 +294,127 @@
                 font-weight: bold;
             }
             ```
+    - CSS Formatting Rules
+        - Declaration Order
+            - 알파벳 순으로 작성(선택)
+            - 프로젝트 내에서 일관되게 순서를 정해서 작성
+            - 예시
+            ```
+            background: fuchsia;
+            border: 1px solid;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            color: black;
+            text-align: center;
+            text-indent: 2em;
+            ```
+        - Block Content Indentation
+            - 들여쓰기를 사용해 계층 구조에 대한 이해를 높임
+            - 예시
+            ```
+            @media screen, projection {
+
+                html {
+                    background: #fff;
+                    color: #444;
+                }
+
+            }
+            ```
+        - Declaration Stops
+            - 모든 줄 끝에는 세미콜론을 사용
+            - 추천 예시
+            ```
+            .test {
+                display: block;
+                height: 100px;
+            }
+            ```
+            - 비추천 예시
+            ```
+            .test {
+                display: block;
+                height: 100px
+            }
+            ```
+        - Property Name Stops
+            - 항목명의 콜론 뒤에는 공백을 사용
+            - 추천 예시
+            ```
+            h3 {
+                font-weight: bold;
+            }
+            ```
+            - 비추천 예시
+            ```
+            h3 {
+                font-weight:bold;
+            }
+            ```
+        - Declaration Block Separation
+            - 추천 예시
+            ```
+            .video {
+                margin-top: 1em;
+            }
+            ```
+            - 비추천 예시
+            ```
+            .video{
+                margin-top: 1em;
+            }
+
+            .video
+            {
+                margin-top: 1em;
+            }
+            ```
+        - Selector and Declaration Separation
+            - 추천 예시
+            ```
+            h1,
+            h2,
+            h3 {
+                font-weight: normal;
+                line-height: 1.2;
+            }
+            ```
+            - 비추천 예시
+            ```
+            a:focus, a:active {
+                position: relative; top: 1px;
+            }
+            ```
+        - Rule Separation
+            - 예시
+            ```
+            html {
+                background: #fff;
+            }
+            (여기에 공백 줄을 넣어줘야 함)
+            body {
+                margin: auto;
+                width: 50%;
+            }
+            ```
+        - CSS Quotation Marks
+            - "" 보다 ''를 사용
+            - url() 에는 인용 마크 사용하지 않음
+            - 예외 : @charset을 사용할때는 ""를 사용
+            - 추천 예시
+            ```
+            @import url(https://www.google.com/css/maia.css);
+
+            html {
+                font-family: 'open sans', arial, sans-serif;
+            }
+            ```
+            - 비추천 예시
+            ```
+            @import url("https://www.google.com/css/maia.css");
+
+            html {
+                font-family: "open sans", arial, sans-serif;
+            }
+            ```
