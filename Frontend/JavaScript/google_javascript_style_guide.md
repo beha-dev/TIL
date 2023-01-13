@@ -43,4 +43,43 @@
                     import {short} from './long/path/to/a/file.js';
                     import {aLongNameThatBreaksAlignment} from './long/path/to/a/file.js';
                     ```
-                
+                - Naming imports
+                    - Naming module imports
+                        - 모듈을 가져올 때 lowerCamelCase로 이름을 지정해서 가져옴
+                        - 예시
+                        ```
+                        import * as fileOne from '../file-one.js';
+                        import * as fileTwo from '../file_two.js';
+                        import * as fileThree from '../filethree.js';
+
+                        import * as libString from './lib/string.js';
+                        import * as math from './math/math.js';
+                        import * as vectorMath from './vector/math.js';
+                        ```
+                    - Naming default imports
+                        - 디폴트로 가져올 때는 파일 명을 기준으로 이름을 지정해서 가져옴
+                        - 예시
+                        ```
+                        import MyClass from '../my-class.js';
+                        import myFunction from '../my_function.js';
+                        import SOME_CONSTANT from '../someconstant.js';
+                        ```
+                    - Naming named imports
+                        - import {name} : 파일명과 같은 이름으로 지정해야 하고, import {SomeThing as SomeOtherThing}와 같은 형식은 피함
+                        - 예시
+                        ```
+                        import * as bigAnimals from './biganimals.js';
+                        import * as domesticatedAnimals from './domesticatedanimals.js';
+
+                        new bigAnimals.Cat();
+                        new domesticatedAnimals.Cat();
+                        ```
+                        - import {SomeThing as SomeOtherThing} : 가져온 파일들이 동일한 이름을 사용할 때 이름을 재지정함
+                        - 예시
+                        ```
+                        import {Cat as BigCat} from './biganimals.js';
+                        import {Cat as DomesticatedCat} from './domesticatedanimals.js';
+
+                        new BigCat();
+                        new DomesticatedCat();
+                        ```
