@@ -1,0 +1,96 @@
+# 자료구조
+- Array (배열)
+    - 같은 형의 데이터 타입을 메모리에 저장하는 선형적(일렬) 자료구조.
+    - 논리적 구조와 물리적 구조가 동일.
+- Tree
+    - Binary Search Tree의 특성
+        - 유일한 키 값
+        - 루트 노드의 키 값 기준
+- Hashing (해싱)
+    - 산술 연산을 이용한 검색 방식
+
+# 컬렉션 프레임워크
+- 프로그램 구현에 필요한 자료구조(Data Structure)를 구현해 놓은 라이브러리
+- java.util 패키지에 구현되어 있음
+- 개발에 소요되는 시간을 절약하면서 최적화 된 알고리즘을 사용할 수 있음
+- 여러 인터페이스와 구현 클래스 사용 방법을 이해해야 함
+- Collection 인터페이스
+    - 하나의 객체를 관리하기 위한 메서드가 정의된 인터페이스
+    - 하위의 List와 Set 인터페이스가 있음
+    - 여러 클래스들이 Collection 인터페이스를 구현함
+    - List 인터페이스
+        - 순서가 있는 자료 관리, 중복 허용
+        - 이 인터페이스를 구현한 클래스는 ArrayList, Vectior, LinkedList, Stack, Queue 등이 있음
+        - 객체를 순서에 따라 저장하고 관리하는데 필요한 메서드가 선언된 인터페이스
+        - 배열의 기능을 구현하기 위한 인터페이스
+        - 동기화(synchronization) : 두 개의 쓰레드가 동시에 하나의 리소스에 접근 할 때 순서를 맞추어서 데이터에 오류가 발생하지 않도록 함
+        - ArrayList
+            - 객체 배열을 구현한 클래스
+            - 일반적으로 더 많이 사용
+            - 동기화 기능이 추가 되어야 하는 경우 
+                - Collections.synchronizedList(new ArrayList<String>());
+        - Vector
+            - 객체 배열을 구현한 클래스
+            - 자바 2부터 제공된 클래스
+            - 멀티 쓰레드 상태에서 리소스에 대한 동기화가 필요한 경우 Vector를 사용
+        - LinkedList
+            - 논리적으로 순차적인 자료구조가 구현된 클래스
+            - 다음 요소에 대한 참조값을 가지고 있음
+            - 요소의 추가 / 삭제에 드는 비용이 배열보다 적음
+    - Set 인터페이스
+        - 순서가 정해져 있지 않음, 중복을 허용하지 않음
+        - 이 인터페이스를 구현한 클래스는 HashSet, TreeSet 등이 있음
+        - 아이디, 주민번호, 사번 등 유일한 값이나 객체를 관리할 때 사용
+        - 저장된 순서와 출력순서를 다를 수 있음
+        - get(i) 메서드가 제공되지 않음
+        - TreeSet 클래스
+            - 객체의 정렬에 사용되는 클래스
+            - 중복을 허용하지 않으면서 오름차순이나 내림차순으로 객체를 정렬 함
+            - 내부적으로 이진 검색 트리(binary search tree)로 구현되어 있음
+            - 이진 검색 트리에 자료가 저장 될 때 비교하여 저장될 위치를 정함
+            - 객체 비교를 위해 Comparable이나 Comparator 인터페이스를 구현 해야 함
+    - 주요 메서드
+        - boolean Add(E e) : Collection에 객체를 추가합니다.
+        - void clear() : Collection의 모든 객체를 제거합니다.
+        - Iterator<E> iterator : Collection을 순환할 반복자(Iterator)를 반환합니다.
+        - boolean remove(Object o) : Collection에 매개변수에 해당하는 인스턴스가 존재하면 제거합니다.
+        - int size() : Collection에 있는 요소의 개수를 반환합니다.
+    - Stack 과 Queue
+        - Stack과 Queue의 기능은 구현된 클래스가 있지만 ArrayList나 LinkedList를 활용하여서 사용할 수도 있음
+        - Stack : Last In First Out (LIFO)
+            - 맨 마지막에 추가 된 요소가 먼저 꺼내지는 자료구조
+            - 게임의 무르기 기능, 최근 자료 추출 등에서 사용
+    - Iterator
+        - Collection의 개체를 순회하는 인터페이스
+        - iterator() 메서드 호출
+            - Iterator ir = memberArrayList.iterator();
+        - 메서드
+            - boolean hashNext() : 이후에 요소가 더 있는지를 체크하는 메서드이며, 요소가 있다면 true를 반환합니다.
+            - E next() : 다음에 있는 요소를 반환합니다.
+    - Comparable 인터페이스, Comparator 인터페이스
+        - 정렬 대상이 되는 클래스가 구현해야 하는 인터페이스
+        - Comparable 은 compareTo() 메서드를 구현
+        - 매개 변수와 객체 자신(this)를 비교
+        - Comparator는 compare() 메서드를 구현
+        - 두 개의 매개 변수를 비교
+        - TreeSet 생성자에 Comparator가 구현된 객체를 매개변수로 전달
+            - TreeSet<Member> treeSet = new TreeSet<Member>(new Member());
+        - 일반적으로 Comparable을 더 많이 사용
+        - 이미 Comparable이 구현된 경우 Comparator를 이용하여 다른 정렬 방식을 정의 할 수 있음
+- Map 인터페이스
+    - key-value pair의 객체를 관리하는데 필요한 메서드가 정의 됨
+    - key는 중복 될 수 없음
+    - 검색을 위한 자료 구조
+    - key를 이용하여 값을 저장하거나 검색, 삭제 할 때 사용하면 편리함
+    - 내부적으로 hash 방식으로 구현 됨
+        - index = hash(key)
+    - key가 되는 객체는 객체의 유일성함의 여부를 알기 위해 equals()와 hashCode() 메서드를 재정의 함
+    - HashMap 클래스
+        - Map 인터페이스를 구현한 클래스 중 가장 일반적으로 사용하는 클래스
+        - HashTable 클래스는 자바 2 부터 제공된 클래스로 Vector 처럼 동기화를 제공 함
+        - 여러 메서드를 활용하여 pair 자료를 쉽고 빠르게 관리할 수 있음
+    - TreeMap 클래스
+        - key 객체를 정렬하여 key-value를 pair로 관리하는 클래스
+        - key에 사용되는 클래스에 Comparable, Comparator 인터페이스를 구현
+        - java에 많은 클래스들은 이미 Comparable이 구현되어 있음
+        - 구현 된 클래스를 key로 사용하는 경우는 구현할 필요 없음
