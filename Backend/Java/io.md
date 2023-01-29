@@ -1,0 +1,86 @@
+# 입출력
+- 스트림
+    - 네트웍에서 자료의 흐름이 물과 같다는 의미에서 유래
+    - 다양한 입출력 장치에 독립적으로 일관성 있는 입출력을 제공하는 방식
+    - 입출력이 구현 되는 곳 : 파일 디스크, 키보드, 마우스, 메모리 네트웍 등
+    - 구분
+        - 대상 기준
+            - 입력 스트림 : 대상으로 부터 자료를 읽어 들이는 스트림
+                - FileInputStream, FileReader, BufferedInputStream, BufferedReader 등
+            - 출력 스트림 : 대상으로 자료를 출력하는 스트림
+                - FileOutputStream, FileWriter, BufferedOutputStream, BufferedWriter 등
+        - 자료의 종류
+            - 바이트 스트림 : 동영상, 음악 파일 등을 읽고 쓸 때 사용
+                - FileInputStream, FileOutputStream, BufferedInputStream, BufferedOutputStream 등
+                - 바이트 단위 입력용 최상위 스트림
+                - 추상 메서드를 포함한 클래스로 하위 클래스가 구현하여 사용
+                - 주요 하위 클래스
+                    - FileInputStream : 파일에서 바이트 단위로 자료를 읽습니다.
+                    - ByteArrayInputStream : Byte 배열 메모리에서 바이트 단위로 자료를 읽습니다.
+                    - FilterInputStream : 기반 스트림에서 자료를 읽을 때 추가 기능을 제공하는 보조 스트림의 상위 클래스
+                - 메서드 
+                    - int read() : 입력 스트림으로부터 한 바이트의 자료를 읽습니다. 읽은 자료의 바이트 수로 반환합니다.
+                    - int read(byte b[]) : 입력 스트립으로부터 b[] 크기의 자료를 b[]에 읽습니다. 읽은 자료의 바이트 수를 반환합니다.
+                    - int read(byte b[], int off, int len) : 입력 스트림으로부터 b[]의 off 변수 위치부터 저장하여 len 만큼 읽습니다. 읽은 자료의 바이트 수를 반환합니다.
+                    - void close() : 입력 스트림과 연결된 대상 리소스를 닫습니다.
+                    - flush() : 출력 버퍼를 비울 때 사용
+                    - close() : 메서드 내부에서 flush()가 호출되므로 close() 메서드가 호출되면 출력버퍼가 비워 짐
+            - 문자 스트림 : 바이트 단위로 자료를 처리하면 문자는 깨짐, 2 바이트 단위로 처리하도록 구현된 스트림
+                - FileReader, FileWriter, BufferedReader, BufferedWriter 등
+                - Reader
+                    - 문자 단위로 읽는 최상위 스트림
+                    - 하위 클래스에서 상속 받아 구현 함
+                        - FileReader : 파일에서 문자 단위로 읽는 스트링 클래스
+                        - InputStreamReader : 바이트 단위로 읽은 자료를 문자로 변환해 주는 보조 스트림 클래스
+                        - BufferedReader : 문자로 읽을 때 배열을 제공하여 한꺼번에 읽을 수 ㅣㅇㅆ는 기능을 제공해 주는 보조 스트림
+                    - 주요 메서드
+                        - int read() : 파일로부터 한 문자를 읽습니다. 읽은 값을 반환합니다.
+                        - int read(char[] buf) : 파일로부터 buf 배열에 문자를 읽습니다.
+                        - int read(char[] buf, int off, int len) : 파일로부터 buf 배열의 off 위치에서부터 len 개수만큼 문자를 읽습니다.
+                        - void close() : 스트림과 연결된 파일 리소스를 닫습니다.
+                - Buffered 스트림
+                    - 내부적으로 8192 바이트 배열을 가지고 읽거나 쓰기 기능을 제공하여 속도가 빨라짐
+                    - BufferedInputStream : 바이트 단위로 읽는 스트림에 버퍼링 기능을 제공합니다.
+                    - BufferedOutputStream : 바이트 단위로 출력하는 스트림에 버퍼링 기능을 제공합니다.
+                    - BufferedReader : 문자 단위로 읽는 스트림에 버퍼링 기능을 제공합니다.
+                    - BufferedWriter : 문자 단위로 출력하는 스트림에 버퍼링 기능을 제공합니다.
+        - 기능
+            - 기반스트림 : 대상에 직접 자료를 읽고 쓰는 기능의 스트림
+                - FileInputStream, FileOutputStream, FileReader, FileWriter 등
+            - 보조 스트림 : 직접 읽고 쓰는 기능은 없이 추가적인 기능을 더해주는 스트림
+                - InputStreamReader, OutputStreamWriter, BufferedInputStream, BufferedOutputStream 등
+                - 실제 읽고 쓰는 스트림이 아닌 보조적인 기능을 추가하는 스트림
+                - 데코레이터 패턴
+                - FilterInputStream 과 FilterOutputStream이 보조스트림의 상위 클래스
+                - 생성자의 매개 변수로 또 다른 스트림을 가짐
+                    - protected FilterInputStreaam(InputStream in) : 생성자의 매개변수로 InputStream을 받습니다.
+                    - public FilterOutputStream(OutputStream out) : 생성자의 매개변수로 OutputStream을 받습니다.
+                - InputStreamReader와 OutputStreamWriter
+                    - 바이트 단위로 읽거나 쓰는 자료를 문자로 변환해주는 보조 스트림
+            - 보조 스트림은 직접 읽고 쓰는 기능은 없으므로 항상 기반 스트림이나 또 다른 보조 스트림을 생성자 매개변수로 포함 함
+    - Scanner 클래스
+        - java.util 패키지에 있는 입력 클래스
+        - 문자뿐 아니라 정수, 실수등 다른 자료형도 읽을 수 있음
+        - 여러 대상에서 자료를 읽을 수 있음 (콘솔, 파일 등)
+        - 생성자
+            - Scanner(File source) : 파일을 매개변수로 받아 Scanner를 생성합니다.
+            - Scanner(InputStream source) : 바이트 스트림을 매개변수로 받아 Scanner를 생성합니다.
+            - Scanner(String Source) : String을 매개변수로 받아 Scanner를 생성합니다.
+        - 메서드
+            - boolean nextBoolean() : booleam 자료를 읽습니다.
+            - byte nextByte() : 한 바이트 자료를 읽습니다.
+            - short nextShort() : short 자료형을 읽습니다.
+            - int nextInt() : int 자료형을 읽습니다.
+            - long nextLong() : long 자료형을 읽습니다.
+            - float nextFloat() : float 자료형을 읽습니다.
+            - double nextDouble() : double 자료형을 읽습니다.
+            - String nextLine() : 문자열 String을 읽습니다.
+    - Console 클래스
+        - System.in 을 사용하지 않고 콘솔에서 표준 입력을 할 수 있음
+        - 이클립스와는 연동되지 않음
+        - command 창에서 입력 함
+        - 메서드
+            - String readLine() : 문자열을 읽습니다.
+            - char[] readPassword() : 사용자에게 문자열을 보여 주지 않고 읽습니다.
+            - Reader reader() : Reader 클래스를 반환합니다.
+            - PrintWriter writer() : PrintWriter 클래스를 반환합니다.
