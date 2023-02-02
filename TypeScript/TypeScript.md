@@ -1,0 +1,130 @@
+## Do it! 타입스크립트 프로그래밍 정리
+
+## 타입스크립트란?
+- 세 종류의 자바스크립트
+    - ES5 : 웹 브라우저에서 동작하는 표준 자바스크립트
+    - ESNext : ES6 이후 버전을 통틀어 가리킴
+    - TypeScript : ESNext에 타입(type) 기능을 추가
+- 트랜스파일
+    - ESNext 자바스크립트 소스코드는 바벨(Babel)이라는 트랜스파일러를 거치면 ES5 자바스크립트 코드로 변환
+    - 트랜스파일러 : 어떤 프로그래밍 언어로 작성된 소스코드를 또 다른 프로그래밍 언어로 된 소스코드로 바꿔주는 프로그램
+    - 컴파일러 : 텍스트로 된 소스코드를 바이너리 코드로 바꿔줌
+- 프로그래밍 언어, 'Compiled Language' or 'Transpile'
+
+## 타입스크립트 개발 환경 만들기
+- scoop 프로그램
+    - 프로그램이 업데이트 될때마다 최신화를 거쳐야 하는걸 한번에 관리
+    - scoop로 설치한 프로그램은 scoop update * 명령으로 한꺼번에 가장 최신 버전으로 업데이트
+        - 윈도우 파워셀 관리자 권한으로 실행
+            - scoop 설치
+                - Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+                - $env:SCOOP='C:\Scoop'
+                - iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+                - scoop install aria2
+                - scoop install git
+            - vscode 설치
+                - scoop bucket add extras
+                - scoop install vscode
+            - nodejs 설치
+                - scoop install nodejs-lts
+                - node -v
+            - 구글 크롬 브라우저 설치
+                - scoop install chromium
+                - chrome
+            - touch 프로그램 설치  
+                - 파일을 생성할 때 지정한 이름의 파일이 이미 있으면 무시하고, 없으면 해당 이름으로 파일을 만들어줌
+                - scoop install touch
+        - vscode 터미널 내
+            - 타입스크립트 컴파일러 설치
+                - npm  i -g typescript
+                - tsc -v
+            - 타입스크립트 컴파일과 실행
+                - tsc 타입스크립트파일명 : .ts => .js
+                - node 자바스크립트파일명 : .js 실행
+            - ts-node 설치
+                - 타입스크립트 코드를 ES5로 변환하고 실행
+                - npm i -g ts-node
+                - ts-node 타입스크립트파일명
+- 타입스크립트 프로젝트 만들기
+    - 노드제이에스 프로젝트를 만든 다음, 개발 언어를 타입스크립트로 설정
+    - npm init --y : package.json 생성 
+    - npm i -D typescript ts-node : typescript, ts-node를 package.json에 설치
+    - npm i -D @types/node 
+    - tsc --init : tsconfig.json 파일 만들기
+- 모듈
+    - 소스코드를 여러 개 모듈로 분할하면 어떤 모듈에 어떤 내용이 있는지를 서로 알게 해줘야 함
+    - import : 다른 모듈의 기능을 이용하는 쪽에서 사용하는 키워드
+        - import { 심벌 목록 } from '파일의 상대 경로'
+        - import * as 심벌 from '파일 상대 경로'
+    - export : 기능을 제공하는 쪽에서 사용
+        - interface, class, type, let, const 키워드 앞에도 붙일 수 있음
+    - export default
+        - 타입스크립트가 자바스크립트와 호환하기 위해 export default 구문 제공
+        - 한 모듈이 내보내는 기능 중 오직 한 개에만 붙일 수 있음
+        - import 문으로 불러올 때 중괄호 {} 없이 사용할 수 있음
+        - export 등이 있는 파일에서도 사용할 수 있음
+- tsconfig.json 파일 살펴보기
+    - compilerOptions : tsc 명령 형식에서 옵션을 나타냄
+        - "module": "commonjs", 
+            - 동작 대상 플랫폼이 웹 브라우저인지 노드제이에스인지를 구분해 그에 맞는 모듈 방식으로 컴파일
+            - 췝 브라우저에서 동작 : amd
+            - 노드제이에스에서 동작 : commonjs
+        - "esModuleInterop": true, // 
+            - AMD 방식을 전제로 해서 구현한 라이브러리가 동작하게 하기 위해서 설정(true)
+        - "skipLibCheck": true,
+        - "target" :"ES5",
+            - 트랜스파일할 대상 자바스크립트의 버전을 설정
+            - 대부분 es5를 키값으로 설정
+            - 최신 버전의 nodejs를 사용한다면 es6를 설정할 수 있음
+        - "moduleResolution": "node",
+            - module의 키의 값이 commonjs이면 node로 설정
+            - module의 키의 값이 amd 이면 classic으로 설정
+        - "outDir": "dist", "baseUrl": ".",
+            - 트랜스파일된 ES5 자바스크립트 파일을 저장하는 디렉터리를 설정
+            - tsc는 tsconfig.json 파일이 있는 디렉터리에서 실행 => 현재 디렉터리를 의미하는 (.)로 설정
+            - outDir : baseDir 설정값을 기준으로 했을 떄 하위 디렉터리의 이름 => dist라는 값을 설정 => 빌드된 결과가 dist 디렉터리에 생성
+        - "sourceMap": true,
+            - true : 트랜스파일 디레
+        - "downlevelIteration": true,
+        - "noImplicitAny": false,
+            - false : 타입을 지정하지 않더라고 문제로 인식하지 않음 
+        - "paths": {"*" : ["node_modules/*"]
+            - 소스 파일의 import 문에서 from 부분을 해석할 떄 찾아야 하는 디렉터리를 설정
+            - import 문이 찾아야 하는 소스가 외부 패키지이면 node_modules 디렉터리에서 찾아야 하므로 키값에 mode_mocules/*도 포함
+    - include : 대상 파일 목록을 나타냄
+
+## 객체와 타입
+- 타입스크립트 변수 선언문
+    - 타입스크립트 기본 제공 타입
+        - 숫자 : number
+        - 불리언 : boolean
+        - 문자열 : string
+        - 객체 : object
+    - let과 const 키워드
+        - var 사용을 지양
+        - let 변수이름[= 초깃값]
+        - const 변수이름 = 초깃값
+    - 타입 주석 : 자바스크립트 변수 선언문을 확장해 타입을 명시함
+        - let n: number = 1
+        - let b: boolean = true
+        - let s: string = 'hello'
+        - let o: object = {}
+    - 타입 추론 : 자바스크립트의 호환성을 위해 타입 주석 부분을 생략 할 수 있음
+        - 대입연산자(=) 오른쪽 값에 따라 변수의 타입을 지정
+        - 각 변수는 초깃값에 해당하는 타입으로 지정, 이후에 각 변수에는 해당 타입의 값만 저장할 수 있음
+    - any 타입 : 값의 타입과 무관하게 어떤 종류의 값도 저장할 수 있음
+        - let a: any = 0
+    - undefined 타입
+        - indefined 는 모든 타입의 최하위 타입
+        - 상위 타입을 저장하려면 오류가 발생
+    - 템플릿 문자열 : 변수에 담긴 값을 조합해 문자열을 만들 수 있게 함
+        - `${변수 이름}`
+- 객체와 인터페이스
+
+## 실습
+- JSON.stringify(object, null, 2)
+    - JSON.stringify(object) : 객체 object를 JSON 문자열로 바꿔주는 기능
+    - JSON.stringify(object, null, 2) 
+        - 줄 바꿈도 하고 들여쓰기도 해주어, 사람이 읽기 편한 형태의 JSON 문자열을 만듬
+        - 2 : 들여쓰기를 위해 공백 문자를 두 개 사용하라는 의미
+                

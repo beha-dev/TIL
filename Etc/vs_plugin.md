@@ -1,0 +1,12 @@
+- plugin
+    - Git Graph : Git History를 Git Graph 형태로 보여줍니다.
+    - Git History : Git History를 작업 건별 Commit 메세지와 Code Diff를 할 수 있습니다.
+    - GitLens : Source 코드 상에서 라이벌 Git 변경 사항을 확인할 수 있습니다.
+    - Git Project Manager : base 경로로 지정한 작업폴더 하위의 Git Project 리스트를 관리할 수 있습니다.
+    - Korean Language Pack for Visual Studio Code : VSCode에 대한 한글 지원 확장 프로그램
+    - Markdown Preview Github Styling : Markdown 으로 작성된 문서를 Github 스타일로 미리볼 수 있습니다.
+    - Meterial Icon Theme : VSCode 탐색기에서 파일/폴더별 아이콘 형태로 볼 수 있게 지원합니다.
+    - Vetur : VueJS용 Syntax-highlighting과 Snippet, Auto Completion, Formatting, Linting 등을 제공합니다.
+    - Vue VScode Snippets: VueJS 개발의 생산성을 높일 수 있는 다양한 Snippets를 제공합니다.
+    - Project Manager : 작업 폴더별로 쉽게 전환할 수 있는 기능을 제공합니다.
+    
