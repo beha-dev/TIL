@@ -41,3 +41,19 @@ dn = {}
 # 키, 값 활용하기
 for key, value in dn.tems():
 ```
+- 문자열
+```
+# 단어 중 일부만 자르기
+s[0:4]
+
+# 문자 -> 아스키 코드
+ord(s)
+```
+- 최빈값 구하기
+```
+# collections 모듈의 Counter 클래스 - 리스트나 튜플에서 각 데이터가 등장한 횟수를 사전 형식으로 반환
+from collections import Counter
+
+num_list = []
+num_count = Counter(num_list).most_common()
+```
