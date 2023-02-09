@@ -57,3 +57,20 @@ from collections import Counter
 num_list = []
 num_count = Counter(num_list).most_common()
 ```
+- 정렬
+```
+num_list = []
+
+# 기본정렬
+num_list.sort()
+
+# 2차원 배열 조건으로 정렬
+# x, y 좌표 기준 x 정렬 후 y 정렬
+num_list.sort(key=lambda x: (x[0], x[1]))
+# x, y 좌표 기준 y 정렬 후 x 정렬
+num_list.sort(key=lambda x: (x[1], x[0]))
+
+# 문자열 배열 문자 길이와 알파벳 순서대로 정렬
+num_list.sort(key=lambda x: (len(x), x))
+
+```
