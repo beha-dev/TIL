@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.120.0/build/three.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Create a scene
+      var scene = new THREE.Scene();
+
+      // Create a camera
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+      // Create a renderer
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Create the first cube
+      var geometry1 = new THREE.BoxGeometry(1, 1, 1);
+      var material1 = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+      var cube1 = new THREE.Mesh(geometry1, material1);
+      scene.add(cube1);
+
+      // Create the second cube
+      var geometry2 = new THREE.BoxGeometry(1, 1, 1);
+      var material2 = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+      var cube2 = new THREE.Mesh(geometry2, material2);
+      cube2.position.x = 2;
+      scene.add(cube2);
+
+      camera.position.z = 5;
+
+      // Animate the cube
+      var animate = function () {
+        requestAnimationFrame(animate);
+
+        cube1.rotation.x += 0.01;
+        cube1.rotation.y += 0.01;
+
+        cube2.rotation.x -= 0.01;
+        cube2.rotation.y -= 0.01;
+
+        renderer.render(scene, camera);
+      };
+
+      animate();
+    </script>
+  </body>
+</html>

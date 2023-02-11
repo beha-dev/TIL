@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.120.0/build/three.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Create a scene
+      var scene = new THREE.Scene();
+
+      // Create a camera
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+      // Create a renderer
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Add 10 random cubes
+      for (var i = 0; i < 10; i++) {
+        var size = Math.random() + 0.5;
+        var geometry = new THREE.BoxGeometry(size, size, size);
+        var color = Math.random() * 0xffffff;
+        var material = new THREE.MeshBasicMaterial({ color: color });
+        var cube = new THREE.Mesh(geometry, material);
+        cube.position.x = (Math.random() - 0.5) * 10;
+        cube.position.y = (Math.random() - 0.5) * 10;
+        cube.position.z = (Math.random() - 0.5) * 10;
+        scene.add(cube);
+      }
+
+      camera.position.z = 10;
+
+      // Animate the cubes
+      var animate = function () {
+        requestAnimationFrame(animate);
+
+        scene.children.forEach(function (cube) {
+          cube.rotation.x += 0.01;
+          cube.rotation.y += 0.01;
+        });
+
+        renderer.render(scene, camera);
+      };
+
+      animate();
+    </script>
+  </body>
+</html>
